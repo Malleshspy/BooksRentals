@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI|| "mongodb+srv://chevulasomesh2504_db_user:OsbhtL6J9SHKlKXU@cluster0.cg5clzq.mongodb.net/?appName=Cluster0", {
+mongoose.connect(process.env.MONGODB_URI|| "mongodb://localhost:27017/books", {
   useNewUrlParser: true,
   useUnifiedTopology: true, 
 }).then(() => {
