@@ -26,7 +26,6 @@ const Login = () => {
       setMessage(err.response?.data?.message || "Login failed");
     }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-600 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
@@ -68,3 +67,5 @@ const Login = () => {
 };
 
 export default Login;
+
+//kkk
