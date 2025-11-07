@@ -1,0 +1,53 @@
+name: MERN CI/CD Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node.js (same version for both)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3️⃣ Install Backend dependencies
+      - name: Install Backend Dependencies
+        working-directory: ./Backend
+        run: npm install
+
+      # 5️⃣ Install Frontend dependencies
+      - name: Install Frontend Dependencies
+        working-directory: ./Frontend
+        run: npm install
+
+      # 6️⃣ Build Frontend (Vite)
+      - name: Build Frontend
+        working-directory: ./Frontend
+        run: npm run build
+
+      # 7️⃣ Upload build artifacts (optional)
+      # - name: Upload Frontend Build Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: frontend-dist
+      #     path: ./Frontend/dist
+
+      # 8️⃣ (Optional) Deploy Backend
+      # - name: Deploy Backend to Render
+      #   run: |
+      #     curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+
+      # 9️⃣ (Optional) Deploy Frontend to Vercel / Netlify
+      # - name: Deploy Frontend
+      #   run: echo "Deploy frontend here (Netlify/Vercel CLI)"

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -37,22 +36,6 @@ const Login = () => {
       setMessage(err.response?.data?.message || "Login failed");
     }
   };
-
-  const fetchBooksss = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:3000/api/books", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setBooks(res.data);
-    } catch (error) {
-      console.error("Failed to fetch books:", error);
-    }
-  };
-  useEffect(()=>{
-    fetchBooksss();
-  })
-  console.log(books);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-600 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
